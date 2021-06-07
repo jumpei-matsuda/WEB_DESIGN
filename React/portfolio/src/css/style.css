@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+/**************************************************************
+ * COLORS
+ **************************************************************/
+:root {
+  --grey: #333;
+  --light-grey: #D5D5D5;
+  --filter: rgba(255,255,255,.4);
+}
+
+/**************************************************************
+  * GENERAL SETTING
+  **************************************************************/
+html {
+  font-size: 100%;
+  color: var(--grey);
+}
+body {
+  font-family: Helvetica, Light;
+}
+.wrapper {
+  padding: 0 10%;
+}
+p {
+  line-height: 1.7;
+}
+
+/** タイトル */
+.title{
+  font-size: 3.5rem;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: .25rem;
+  font-family: 	Context Reprise Light SSi ExtraLight;
+;
+  margin: 3rem 0;
+}
+.title::before,
+.title::after {
+  content: "";
+  display: block;
+  position: relative;
+  height: .75px;
+  background: var(--grey);
+  width: 10rem;
+  margin: 1rem auto;
+}
+.title span {
+  padding: 0 1rem;
+  border-left: .75px solid var(--grey);
+  border-right: .75px solid var(--grey);
+}
+
+/**************************************************************
+ * HEADER
+ **************************************************************/
+.header-page {
+  background-color:  #CBD6C9;
+}
+header {
+  display: block;
+  background: var(--filter);
+  width: 100vw;
+}
+header.open-menu {
+  height: 100vh;
+}
+.header-top {
+  background: var(--filter);
+}
+header .wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  height: auto;
+}
+/** ロゴ */
+/* .logo {
+  background-image: url("../images/sample_logo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+} */
+/** SNSリンク */
+.header-link {
+  display: flex;
+  min-height: 3rem;
+  margin: 0 60px 2rem 0;
+}
+.header-link i {
+  font-size: 1.625rem;
+  margin: .75rem;
+}
+/** ハンバーガーメニュー */
+.main-nav {
+  position: absolute;
+  right: 0;
+  width: 60px;
+  height: 45px;
+  transition: 1s;
+}
+.main-nav:hover {
+  cursor: pointer;
+}
+.menu-btn,
+.close-btn {
+  display: block;
+  position: relative;
+  transition: 1s;
+}
+.menu-btn {
+  opacity: 1;
+}
+.close-btn {
+  opacity: 0;
+}
+.menu-btn.open-menu {
+  opacity: 0;
+}
+.close-btn.open-menu {
+  opacity: 1;
+}
+.menu-btn-top,
+.menu-btn-bottom,
+.close-btn-top,
+.close-btn-bottom {
+  display: block;
+  position: absolute;
+  background: var(--grey);
+  height: 3px;
+  width: 60px;
+  transition: .3s;
+}
+.menu-btn-top {
+  top: 7.5px;
+}
+.menu-btn-bottom {
+  top: 37.5px;
+}
+.close-btn-top {
+  -webkit-transform: translateY(22.5px) rotate(-45deg);
+  transform: translateY(22.5px) rotate(-45deg);
+}
+.close-btn-bottom {
+  -webkit-transform: translateY(22.5px) rotate(45deg);
+ transform: translateY(22.5px) rotate(45deg);
+}
+.header-menu {
+  position: absolute;
+  top: 300px;
+  width: auto;
+  overflow: hidden;
+  transition: 1s;
+  opacity: 0;
+}
+.header-menu.open-menu {
+  opacity: 1;
+}
+.header-menu li {
+  font-size: 2rem;
+  padding: 1rem 0 1rem 1rem;
+}
+
+/**************************************************************
+ * ABOUT
+ **************************************************************/
+.about-page {
+  max-width: 800px;
+  margin: auto;
+}
+.about-description {
+  font-size: 1.125rem;
+  padding: 0 20%;
+  margin-bottom: 3rem;
+}
+.about-list {
+  display: flex;
+  margin-bottom: 5rem;
+}
+.about-member {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5%;
+}
+.about-member p {
+  text-align: left;
+  margin-top: 1rem;
+}
+.about-member img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 220px;
+  height: 220px;
+}
+.menber-name {
+  border-bottom: 1px solid var(--grey);
+  padding-bottom: .25rem;
+  margin-bottom: .5rem;
+}
+
+/**************************************************************
+* FOOTER
+**************************************************************/
+footer p {
+  margin: 0 0 1rem 5rem;
+  font-size: 1.125rem;
+}
+.footer-current {
+  font-weight: bold;
+}
+.footer-content {
+  height: 15vh;
+  background: var(--light-grey);
+  text-align: center;
+}
+.footer-content small {
+  position: relative;
+  font-size: .875rem;
+  top: 50%;
+}
+
+/**************************************************************
+* RESPONSE
+**************************************************************/
+@media (min-width: 600px) {
+  header .wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    height: 30vh;
+  }
+  header.home .wrapper {
+    height: 40vh;
+  }
+  .logo {
+    max-width: 200px;
+    max-height: 200px;
+  }
+}
