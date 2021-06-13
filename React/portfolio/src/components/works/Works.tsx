@@ -1,44 +1,15 @@
-import React, { useEffect } from 'react';
-import Header from 'components/commons/Header';
-import Footer from 'components/commons/Footer';
-import SubMenuArea, { Cols } from 'components/commons/SubMenuArea';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import PageWrapper from 'components/commons/PageWrapper';
+import GridArea from 'components/commons/molecules/GridArea';
 
 import { headerMenu } from 'constants/CommonConst';
 import { ImgData, imgList } from 'constants/ImageConst';
 
-/** ******************
- * Style
- ******************* */
-const useStyles = makeStyles(() => ({
-  root: {
-    fontSize: '100%',
-    fontFamily: 'Helvetica, Light',
-    position: 'relative',
-    top: '6rem',
-  },
-  background: {
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    width: '100%',
-  },
-}));
-
-type AboutProps = {
+export type WorksProps = {
   isResponsible: boolean;
 };
-const About: React.FC<AboutProps> = (props) => {
-  const { isResponsible } = props;
-  const classes = useStyles();
 
-  /**
-   * 画面遷移時スクロール位置をトップに戻す
-   */
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+const Works: React.FC<WorksProps> = (props) => {
+  const { isResponsible } = props;
 
   /**
    * Worksページ画像リスト
@@ -49,20 +20,10 @@ const About: React.FC<AboutProps> = (props) => {
   }));
 
   return (
-    <Box className={classes.root}>
-      <Header isResponsible={isResponsible} />
-      <div className="wrapper">
-        <SubMenuArea
-          title={headerMenu.works.label}
-          cols={worksImgList.length as Cols}
-          imgList={worksImgList}
-          nextPage={headerMenu.works.url}
-          isResponsible={isResponsible}
-        />
-      </div>
-      <Footer />
-    </Box>
+    <PageWrapper title={headerMenu.works.label} isResponsible={isResponsible}>
+      <GridArea imgList={worksImgList} cols={3} isResponsible={isResponsible} />
+    </PageWrapper>
   );
 };
 
-export default About;
+export default Works;

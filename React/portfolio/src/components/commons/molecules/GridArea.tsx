@@ -1,9 +1,7 @@
-import React, { useRef } from 'react';
-import { ImgData } from 'constants/ImageConst';
+import { useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, GridSize } from '@material-ui/core';
-import Title from 'components/commons/Title';
-import MoreButton from 'components/commons/MoreButton';
+import { Grid, GridSize } from '@material-ui/core';
+import { ImgData } from 'constants/ImageConst';
 
 /** ******************
  * Style
@@ -52,27 +50,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-/** ******************
- * type
- ******************* */
 export type Cols = 2 | 3;
-type SubMenuAreaProp = {
-  title: string;
+
+export type GridAreaProps = {
   cols: Cols;
   imgList: ImgData[];
-  nextPage: string | '#';
   isResponsible: boolean;
 };
 
-/**
- * トップページ サブエリア
- * @param props
- * @returns
- */
-const SubMenuArea: React.FC<SubMenuAreaProp> = (props) => {
+const GridArea: React.FC<GridAreaProps> = (props) => {
+  const { cols, imgList, isResponsible } = props;
   const classes = useStyles();
-  const { title, cols, imgList, nextPage, isResponsible } = props;
-
   /**
    * グリッド数
    */
@@ -82,24 +70,20 @@ const SubMenuArea: React.FC<SubMenuAreaProp> = (props) => {
   }
 
   return (
-    <Box className={classes.root}>
-      <Title title={title} />
-      <Grid justify="center" container>
-        {imgList.map((img: ImgData) => (
-          <Grid
-            key={img.id}
-            item
-            xs={isResponsible ? xs.current : 12}
-            className={classes[`gridItemCol${cols}` as keyof typeof classes]}
-          >
-            {img.title && <span className={classes.imgTitle}>{img.title}</span>}
-            <img src={img.img} alt={img.alt} className={classes.img} />
-          </Grid>
-        ))}
-      </Grid>
-      <MoreButton nextPage={nextPage} />
-    </Box>
+    <Grid justify="center" container>
+      {imgList.map((img: ImgData) => (
+        <Grid
+          key={img.id}
+          item
+          xs={isResponsible ? xs.current : 12}
+          className={classes[`gridItemCol${cols}` as keyof typeof classes]}
+        >
+          {img.title && <span className={classes.imgTitle}>{img.title}</span>}
+          <img src={img.img} alt={img.alt} className={classes.img} />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 
-export default SubMenuArea;
+export default GridArea;
