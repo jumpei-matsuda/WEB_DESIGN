@@ -1,4 +1,4 @@
-import PageWrapper from 'components/commons/PageWrapper';
+import PageWrapper from 'components/commons/templates/PageWrapper';
 import GridArea from 'components/commons/molecules/GridArea';
 
 import { headerMenu } from 'constants/CommonConst';

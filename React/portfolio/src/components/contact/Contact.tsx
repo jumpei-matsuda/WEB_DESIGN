@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from 'react-hook-form';
-import PageWrapper from 'components/commons/PageWrapper';
+import PageWrapper from 'components/commons/templates/PageWrapper';
 import {
   headerMenu,
   FormInput,
