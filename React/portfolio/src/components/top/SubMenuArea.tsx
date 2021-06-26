@@ -34,8 +34,8 @@ type SubMenuAreaProp = {
  * @returns
  */
 const SubMenuArea: React.FC<SubMenuAreaProp> = (props) => {
-  const classes = useStyles();
   const { title, cols, imgList, nextPage, isResponsible } = props;
+  const classes = useStyles();
 
   return (
     <Box className={classes.root}>

@@ -8,9 +8,7 @@ export type WorksProps = {
   isResponsible: boolean;
 };
 
-const Works: React.FC<WorksProps> = (props) => {
-  const { isResponsible } = props;
-
+const Works: React.FC<WorksProps> = ({ isResponsible }) => {
   /**
    * Worksページ画像リスト
    */

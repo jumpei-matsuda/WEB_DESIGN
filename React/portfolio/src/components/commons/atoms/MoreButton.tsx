@@ -64,8 +64,7 @@ type MoreButtonProps = {
   nextPage: string;
 };
 
-const MoreButton: React.FC<MoreButtonProps> = (props) => {
-  const { nextPage } = props;
+const MoreButton: React.FC<MoreButtonProps> = ({ nextPage }) => {
   const classes = useStyles();
   const history = useHistory();
 

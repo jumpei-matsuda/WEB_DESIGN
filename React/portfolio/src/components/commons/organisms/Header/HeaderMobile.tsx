@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, AppBar, Toolbar, Grid, Paper } from '@material-ui/core';
-import { MenuObj } from 'constants/CommonConst';
+import { MenuObj, headerMenu } from 'constants/CommonConst';
 
 import logo from 'img/sample_logo.jpg';
 
@@ -31,6 +31,9 @@ const useStyles = makeStyles(() => ({
     height: '4rem',
     borderRadius: '50%',
     transition: '.7s',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   grid: {
     boxShadow: 'none',
@@ -64,7 +67,13 @@ const HeaderMobile: React.FC<HeaderMobileProps> = (props) => {
   return (
     <AppBar position="static" className={classes.root}>
       <Toolbar className={classes.toolbar}>
-        <img src={logo} alt="logo" className={classes.logo} />
+        <img
+          src={logo}
+          alt="logo"
+          className={classes.logo}
+          role="presentation"
+          onClick={() => movePage(headerMenu.top.url)}
+        />
       </Toolbar>
       <Grid container className={classes.grid}>
         {headerMenuList.map((menu) => (

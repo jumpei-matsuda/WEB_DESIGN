@@ -15,7 +15,7 @@ const App: VFC = () => {
   const { action } = useHistory();
 
   // レスポンシブ対応（ブレークポイント：600px）
-  const isResponsible = useMediaQuery(theme.breakpoints.up('sm'));
+  const isResponsible = useMediaQuery(theme.breakpoints.down('sm'));
 
   // スクロール位置リセット
   useEffect(() => {

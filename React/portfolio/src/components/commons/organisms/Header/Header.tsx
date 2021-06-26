@@ -6,8 +6,7 @@ import HeaderMobile from './HeaderMobile';
 type HeaderProps = {
   isResponsible: boolean;
 };
-const Header: React.FC<HeaderProps> = (props) => {
-  const { isResponsible } = props;
+const Header: React.FC<HeaderProps> = ({ isResponsible }) => {
   const history = useHistory();
 
   /**
@@ -30,10 +29,10 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   return (
     <>
-      {isResponsible && (
+      {!isResponsible && (
         <HeaderDesktop headerMenuList={headerMenuList} movePage={movePage} />
       )}
-      {!isResponsible && (
+      {isResponsible && (
         <HeaderMobile headerMenuList={headerMenuList} movePage={movePage} />
       )}
     </>

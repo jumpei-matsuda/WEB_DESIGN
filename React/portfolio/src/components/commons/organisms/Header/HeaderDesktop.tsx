@@ -1,8 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, AppBar, Toolbar } from '@material-ui/core';
-import { MenuObj } from 'constants/CommonConst';
+import { MenuObj, headerMenu } from 'constants/CommonConst';
 import logo from 'img/sample_logo.jpg';
-import { useScroll } from '../../../../hooks/useScroll';
+import { useScroll } from 'hooks/useScroll';
 
 /** ******************
  * Style
@@ -31,6 +31,9 @@ export const useStyles = makeStyles(() => ({
     height: '4rem',
     borderRadius: '50%',
     transition: '.7s',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   large: {
     width: '6rem',
@@ -91,6 +94,8 @@ const HeaderDesktop: React.FC<HeaderDesktopProps> = (props) => {
           src={logo}
           alt="logo"
           className={classes.logo + (!isTop ? ` ${classes.large}` : '')}
+          role="presentation"
+          onClick={() => movePage(headerMenu.top.url)}
         />
         <div>
           {headerMenuList.map((menu) => (

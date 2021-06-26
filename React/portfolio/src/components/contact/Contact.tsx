@@ -15,9 +15,12 @@ import { Button } from '@material-ui/core';
  * Style
  ******************* */
 const useStyles = makeStyles(() => ({
-  container: {
+  containerDesktop: {
     margin: '5rem auto',
     width: '60%',
+  },
+  containerMobile: {
+    textAlign: 'center',
   },
   submit: {
     margin: '1rem',
@@ -28,8 +31,7 @@ export type ContactProps = {
   isResponsible: boolean;
 };
 
-const Contact: React.FC<ContactProps> = (props) => {
-  const { isResponsible } = props;
+const Contact: React.FC<ContactProps> = ({ isResponsible }) => {
   const classes = useStyles();
 
   // form
@@ -38,7 +40,12 @@ const Contact: React.FC<ContactProps> = (props) => {
 
   return (
     <PageWrapper title={headerMenu.contact.label} isResponsible={isResponsible}>
-      <form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={
+          !isResponsible ? classes.containerDesktop : classes.containerMobile
+        }
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <InputText
           title={formInputTitle.company}
           name={formInputName.company}

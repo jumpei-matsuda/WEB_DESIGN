@@ -14,7 +14,9 @@ const useStyles = makeStyles(() => ({
     color: '#333',
     fontFamily: 'Helvetica, Light',
     position: 'relative',
-    paddingTop: '11rem',
+    '&desktop': {
+      paddingTop: '11rem',
+    },
   },
 }));
 
@@ -33,12 +35,16 @@ type PageWrapperProp = {
  * @returns
  */
 const PageWrapper: React.FC<PageWrapperProp> = (props) => {
-  const classes = useStyles();
-  const { topRef, scrollToTop } = useScrollTop();
   const { title, isResponsible, children } = props;
 
+  const classes = useStyles();
+  const { topRef, scrollToTop } = useScrollTop();
+
   return (
-    <div className={classes.root} ref={topRef}>
+    <div
+      className={classes.root + (!isResponsible ? 'desktop' : '')}
+      ref={topRef}
+    >
       <Header isResponsible={isResponsible} />
       <Title title={title} />
       {children}

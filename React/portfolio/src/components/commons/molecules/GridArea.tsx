@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, GridSize } from '@material-ui/core';
 import { ImgData } from 'constants/ImageConst';
+import GridImage from 'components/commons/atoms/GridImage';
 
 /** ******************
  * Style
@@ -75,11 +76,10 @@ const GridArea: React.FC<GridAreaProps> = (props) => {
         <Grid
           key={img.id}
           item
-          xs={isResponsible ? xs.current : 12}
+          xs={!isResponsible ? xs.current : 12}
           className={classes[`gridItemCol${cols}` as keyof typeof classes]}
         >
-          {img.title && <span className={classes.imgTitle}>{img.title}</span>}
-          <img src={img.img} alt={img.alt} className={classes.img} />
+          <GridImage image={img} />
         </Grid>
       ))}
     </Grid>

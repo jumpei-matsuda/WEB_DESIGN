@@ -23,6 +23,16 @@ const useStyles = makeStyles(() => ({
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     width: '100%',
+    animationName: '$fadeIn',
+    animationDuration: '2s',
+  },
+  '@keyframes fadeIn': {
+    '0%': {
+      opacity: 0,
+    },
+    '100%': {
+      opacity: 1,
+    },
   },
   concept: {
     fontSize: '1.375rem',
@@ -36,10 +46,9 @@ const useStyles = makeStyles(() => ({
 export type TopProps = {
   isResponsible: boolean;
 };
-const Home: React.FC<TopProps> = (props) => {
-  const { isResponsible } = props;
-  const classes = useStyles();
 
+const Home: React.FC<TopProps> = ({ isResponsible }) => {
+  const classes = useStyles();
   const { topRef, scrollToTop } = useScrollTop();
 
   /**
