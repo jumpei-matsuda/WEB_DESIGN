@@ -1,21 +1,31 @@
-import { VFC } from 'react';
+import { useEffect, VFC } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Top from 'components/top/Top';
-import About from 'components/about/About';
-import Works from 'components/works/Works';
-import Contact from 'components/contact/Contact';
+import { Switch, Route, useHistory, useLocation } from 'react-router';
+import { Top } from 'components/Top/index';
+import { About } from 'components/About/index';
+import { Works } from 'components/Works/index';
+import { Contact } from 'components/Contact/index';
 
 import 'css/style.css';
 
 const App: VFC = () => {
   const theme = useTheme();
+  const { hash, pathname } = useLocation();
+  const { action } = useHistory();
+
   // レスポンシブ対応（ブレークポイント：600px）
-  const isResponsible = useMediaQuery(theme.breakpoints.up('sm'));
+  const isResponsible = useMediaQuery(theme.breakpoints.down('sm'));
+
+  // スクロール位置リセット
+  useEffect(() => {
+    if (!hash || action !== 'POP') {
+      window.scrollTo(0, 0);
+    }
+  }, [action, hash, pathname]);
 
   return (
-    <Router>
+    <>
       <Switch>
         <Route exact path="/">
           <Top isResponsible={isResponsible} />
@@ -27,10 +37,10 @@ const App: VFC = () => {
           <Works isResponsible={isResponsible} />
         </Route>
         <Route exact path="/contact">
-          <Contact title="Contact" isResponsible={isResponsible} />
+          <Contact isResponsible={isResponsible} />
         </Route>
       </Switch>
-    </Router>
+    </>
   );
 };
 

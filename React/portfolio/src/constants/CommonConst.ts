@@ -16,6 +16,7 @@ type HeaderMenu = {
   works: MenuObj;
   contact: MenuObj;
 };
+
 export const headerMenu: HeaderMenu = {
   top: {
     id: 1,

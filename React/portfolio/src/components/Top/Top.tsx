@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useCallback } from 'react';
-import Header from 'components/commons/Header';
-import Footer from 'components/commons/Footer';
-import SubMenuArea, { Cols } from 'components/commons/SubMenuArea';
-import ToTopButton from 'components/commons/ToTopButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
+import Header from 'components/commons/organisms/Header/Header';
+import Footer from 'components/commons/organisms/Footer';
+import SubMenuArea, { Cols } from 'components/Top/SubMenuArea';
+import ToTopButton from 'components/commons/atoms/ToTopButton';
+import { useScrollTop } from 'hooks/useScrollTop';
 
 import { headerMenu } from 'constants/CommonConst';
 import { ImgData, imgList } from 'constants/ImageConst';
@@ -23,6 +23,16 @@ const useStyles = makeStyles(() => ({
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     width: '100%',
+    animationName: '$fadeIn',
+    animationDuration: '2s',
+  },
+  '@keyframes fadeIn': {
+    '0%': {
+      opacity: 0,
+    },
+    '100%': {
+      opacity: 1,
+    },
   },
   concept: {
     fontSize: '1.375rem',
@@ -33,29 +43,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-type TopProps = {
+export type TopProps = {
   isResponsible: boolean;
 };
-const Home: React.FC<TopProps> = (props) => {
-  const { isResponsible } = props;
+
+const Home: React.FC<TopProps> = ({ isResponsible }) => {
   const classes = useStyles();
-  const topRef = useRef<HTMLDivElement>(null);
-
-  const scrollToTop = useCallback(() => {
-    if (topRef.current) {
-      topRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  }, [topRef]);
-
-  /**
-   * 画面遷移時スクロール位置をトップに戻す
-   */
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const { topRef, scrollToTop } = useScrollTop();
 
   /**
    * Aboutページ画像リスト

@@ -1,4 +1,4 @@
-import top from 'img/top.jpg';
+import top from 'img/top2.jpg';
 import mei from 'img/mei.jpg';
 import jumpei from 'img/jumpei.jpg';
 import logo from 'img/sample_logo.jpg';

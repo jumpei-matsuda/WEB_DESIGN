@@ -5,6 +5,7 @@ const useStyles = makeStyles(() => ({
   title: {
     position: 'static',
     textAlign: 'center',
+    padding: '2rem 0',
     '& h1': {
       fontSize: '3rem',
     },
@@ -18,8 +19,7 @@ type TitleProps = {
   title: string;
 };
 
-const Title: React.FC<TitleProps> = (props) => {
-  const { title } = props;
+const Title: React.FC<TitleProps> = ({ title }) => {
   const classes = useStyles();
 
   return (

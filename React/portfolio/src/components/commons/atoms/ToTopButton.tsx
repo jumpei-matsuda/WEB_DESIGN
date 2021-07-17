@@ -25,8 +25,7 @@ type ToTopButtonProps = {
   scrollToTop: () => void;
 };
 
-const ToTopButton: React.FC<ToTopButtonProps> = (props) => {
-  const { scrollToTop } = props;
+const ToTopButton: React.FC<ToTopButtonProps> = ({ scrollToTop }) => {
   const classes = useStyles();
 
   return (
