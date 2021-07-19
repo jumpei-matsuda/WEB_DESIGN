@@ -1,54 +1,40 @@
-import { makeStyles, Box, Button } from '@material-ui/core';
-import { useHistory } from 'react-router';
-import { headerSourceList } from 'constants/pageSourceConst';
+import React from 'react';
+import { makeStyles } from '@material-ui/core';
+import { Theme } from 'constants/themeConst';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    width: '100v%',
-    height: '10rem',
-    background: '#061b94',
+    height: '5rem',
+    background: theme.color.black,
+    width: '100%',
     display: 'flex',
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'white',
   },
-  navi: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: '1.5rem',
-  },
-  naviItem: {
-    margin: '0 2rem',
-    color: 'white',
-    fontWeight: 900,
-    fontFamily: 'Sawarabi Mincho, sans-serif',
+  copyright: {
+    fontSize: '1.25rem',
+    fontFamily: 'Hiragino Kaku Gothic ProN',
+    color: theme.color.white,
+    textAlign: 'center',
   },
 }));
 
-const Footer: React.VFC = () => {
-  const classes = useStyles();
-  const history = useHistory();
+export type FooterProps = {
+  isResponsible: boolean;
+};
 
-  const movePage = (url: string) => () => {
-    history.push(url);
-  };
+const Footer: React.FC<FooterProps> = (props) => {
+  const classes = useStyles();
+  const { isResponsible } = props;
+
+  console.log(isResponsible);
 
   return (
-    <Box className={classes.root}>
-      <ul className={classes.navi}>
-        {headerSourceList.map((souce) => (
-          <Button
-            className={classes.naviItem}
-            key={souce.id}
-            onClick={movePage(souce.url)}
-          >
-            {souce.content}
-          </Button>
-        ))}
-      </ul>
-      <small>&copy; As Engineer All right reserve</small>
-    </Box>
+    <div className={classes.root}>
+      <p className={classes.copyright}>
+        <small>&copy; xxxxxxxxx All right reserve</small>
+      </p>
+    </div>
   );
 };
 
