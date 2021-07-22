@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles, Box, TextField, Button } from '@material-ui/core';
 import { Theme } from 'constants/themeConst';
+import { useHistory } from 'react-router';
+import { conditionList, naviList } from 'constants/pageSourceConst';
 
 import logo from 'images/logo.png';
 
@@ -17,6 +19,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   searchField: {
     display: 'flex',
     height: '100%',
+  },
+  headerLine: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '1rem 2rem',
   },
   textField: {
     background: theme.color.white,
@@ -66,20 +74,22 @@ export type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = (props) => {
   const classes = useStyles();
+  const history = useHistory();
   const { isResponsible } = props;
 
   const [keyword, setKeyword] = useState<string>('');
+
+  const movePage =
+    (url = '/') =>
+    () => {
+      history.push(url);
+    };
 
   console.log(isResponsible);
 
   return (
     <div className={classes.root}>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        padding="1rem 2rem"
-      >
+      <Box className={classes.headerLine}>
         <img className={classes.img} src={logo} alt="logo" />
         <Box className={classes.searchField}>
           <TextField
@@ -91,20 +101,24 @@ const Header: React.FC<HeaderProps> = (props) => {
           <i className={`fas fa-search ${classes.searchIcon}`} />
         </Box>
       </Box>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        padding="1rem 2rem"
-      >
+      <Box className={classes.headerLine}>
         <Box className={classes.conditionList}>
-          <Button className={classes.conditionItem}>家紋で絞る</Button>
-          <Button className={classes.conditionItem}>名前で絞る</Button>
-          <Button className={classes.conditionItem}>出身地で絞る</Button>
+          {conditionList.map((condition) => (
+            <Button
+              key={condition.id}
+              className={classes.conditionItem}
+              onClick={movePage(condition.url)}
+            >
+              {condition.content}
+            </Button>
+          ))}
         </Box>
         <Box className={classes.naviList}>
-          <Button className={classes.menuButton}>ログイン</Button>
-          <Button className={classes.menuButton}>新規登録</Button>
+          {naviList.map((navi) => (
+            <Button key={navi.id} className={classes.menuButton}>
+              {navi.content}
+            </Button>
+          ))}
         </Box>
       </Box>
     </div>

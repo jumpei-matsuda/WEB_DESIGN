@@ -7,7 +7,7 @@ import { Footer } from 'components/organisms/Footer/index';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    width: theme.width.full,
+    width: '100%',
     background: theme.color.rightGray,
   },
 }));

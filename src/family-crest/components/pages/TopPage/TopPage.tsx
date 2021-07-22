@@ -1,9 +1,11 @@
 import React from 'react';
-import { makeStyles, Box } from '@material-ui/core';
+import { makeStyles, Box, Grid, Button } from '@material-ui/core';
 import { Theme } from 'constants/themeConst';
+import { headerIdList, kanaList, shapeList } from 'constants/pageSourceConst';
 import topImage from 'images/top.jpg';
 
 import PageTempale from 'components/templates/PageTempale';
+import Prefecture from './Prefecture';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -36,6 +38,46 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 'auto',
     background: theme.color.white,
   },
+  gridItem: {
+    padding: '.5rem',
+  },
+  damy: {
+    background: theme.color.rightGray,
+    height: '10rem',
+    width: '10rem',
+    marginRight: '2rem',
+  },
+  crestName: {
+    background: theme.color.red,
+    color: theme.color.white,
+    padding: '.5rem',
+    fontSize: '1.25rem',
+  },
+  conditionArea: {
+    marginBottom: '2rem',
+    '&:after': {
+      content: '""',
+      display: 'block',
+      height: '3px',
+      margin: '1rem 0',
+      background: theme.color.rightGray,
+    },
+  },
+  conditionList: {
+    display: 'flex',
+    justifyContent: 'start',
+    alignItems: 'center',
+  },
+  conditionTitle: {
+    fontSize: '1.3rem',
+    fontWeight: 'bold',
+  },
+  ConditionLabel: {
+    fontSize: '1.3rem',
+  },
+  backGroundWhite: {
+    background: theme.color.white,
+  },
 }));
 
 export type TopPageProps = {
@@ -45,6 +87,8 @@ export type TopPageProps = {
 const TopPage: React.FC<TopPageProps> = (props) => {
   const classes = useStyles();
   const { isResponsible } = props;
+
+  const damyItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   console.log(isResponsible);
 
@@ -63,7 +107,42 @@ const TopPage: React.FC<TopPageProps> = (props) => {
           </p>
         </Box>
 
-        <Box className={classes.searchShape} />
+        <Box
+          id={headerIdList.crest}
+          margin="0 5rem 5rem"
+          className={classes.backGroundWhite}
+        >
+          <Box className={classes.conditionArea}>
+            <Box className={classes.conditionList}>
+              <span className={classes.conditionTitle}>【50音から選ぶ】：</span>
+              {kanaList.map((kana) => (
+                <Button className={classes.ConditionLabel} key={kana.id}>
+                  {kana.content}
+                </Button>
+              ))}
+            </Box>
+            <Box className={classes.conditionList}>
+              <span className={classes.conditionTitle}>【形状から選ぶ】：</span>
+              {shapeList.map((shape) => (
+                <Button className={classes.ConditionLabel} key={shape.id}>
+                  {shape.content}
+                </Button>
+              ))}
+            </Box>
+          </Box>
+          <Grid container>
+            {damyItems.map((item) => (
+              <Grid className={classes.gridItem} xs={4} key={item} item>
+                <p className={classes.crestName}>形状</p>
+                <Box display="flex" justifyContent="start" alignItems="center">
+                  <div className={classes.damy} />
+                  <span>名前</span>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+        <Prefecture />
       </Box>
     </PageTempale>
   );

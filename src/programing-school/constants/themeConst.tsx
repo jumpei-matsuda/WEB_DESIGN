@@ -3,9 +3,6 @@ import { createMuiTheme } from '@material-ui/core';
 const defaultTheme = createMuiTheme();
 export const theme = {
   ...defaultTheme,
-  width: {
-    full: '100vw',
-  },
   animation: {
     fadeIn: {
       '0%': {
@@ -22,11 +19,7 @@ export const theme = {
   color: {
     navy: '#061b94',
     yellow: '#c8b432',
-    rightGray: '#BFBFBF',
-    gray: '#989797',
-    black: '#000',
-    white: '#fff',
-    red: '#7D160D',
+    rightGray: '#f3f3f3',
   },
   marginHeader: '5rem',
 };

@@ -1,128 +1,92 @@
-import React, { useState } from 'react';
-import { makeStyles, Box, TextField, Button } from '@material-ui/core';
-import { Theme } from 'constants/themeConst';
+import { makeStyles, Box, Button } from '@material-ui/core';
 import { useHistory } from 'react-router';
-import { conditionList, naviList } from 'constants/pageSourceConst';
+import { headerSourceList } from 'constants/pageSourceConst';
+import logo from 'images/logo.svg';
 
-import logo from 'images/logo.png';
-
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    position: 'static',
-    background: theme.color.black,
-  },
-  img: {
-    minWidth: '300px',
-    width: '20rem',
-    backgroundSize: 'cover',
-  },
-  searchField: {
+    width: '100%',
+    height: '5rem',
+    background: 'white',
+    zIndex: 2,
     display: 'flex',
-    height: '100%',
-  },
-  headerLine: {
-    display: 'flex',
+    position: 'fixed',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '1rem 2rem',
+    padding: '0 5%',
+    transition: '0.5s',
   },
-  textField: {
-    background: theme.color.white,
-    height: '100%',
-    minWidth: '200px',
-    width: '20rem',
+  '@keyframes fadeIn': {
+    '0%': {
+      opacity: 0,
+    },
+    '100%': {
+      opacity: 0.8,
+    },
   },
-  searchIcon: {
-    background: theme.color.gray,
-    color: theme.color.white,
-    fontSize: '1.675rem',
-    height: '2rem',
-    width: '2rem',
-    textAlign: 'center',
+  navi: {
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'row',
   },
-  conditionList: {
-    display: 'flex',
-    justifyContent: 'start',
+  logo: {
+    width: '15rem',
+    height: 'fit-content',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
-  conditionItem: {
-    border: 'none',
-    margin: '0 1rem',
-    color: theme.color.white,
-    fontSize: '1.125rem',
+  naviItem: {
+    margin: '0 2rem',
+    color: '#061b94',
     fontWeight: 900,
-    fontFamily: 'Hiragino Kaku Gothic ProN',
+    fontFamily: 'Sawarabi Mincho, sans-serif',
   },
-  naviList: {
-    display: 'flex',
-    justifyContent: 'end',
-  },
-  menuButton: {
-    border: `1px solid ${theme.color.white}`,
-    margin: '0 1rem',
-    color: theme.color.white,
-    fontSize: '1.125rem',
-    fontFamily: 'Hiragino Kaku Gothic ProN',
+  button: {
+    backgroundColor: '#061b94',
+    color: '#fff',
+    border: 'solid #061b94',
+    borderRadius: '30px',
+    padding: '.5rem',
+    '&:hover': {
+      color: '#061b94',
+      background: '#f3f3f3',
+    },
   },
 }));
 
-export type HeaderProps = {
-  isResponsible: boolean;
-};
-
-const Header: React.FC<HeaderProps> = (props) => {
+const TopPage: React.VFC = () => {
   const classes = useStyles();
   const history = useHistory();
-  const { isResponsible } = props;
 
-  const [keyword, setKeyword] = useState<string>('');
-
-  const movePage =
-    (url = '/') =>
-    () => {
-      history.push(url);
-    };
-
-  console.log(isResponsible);
+  const movePage = (url: string) => () => {
+    history.push(url);
+  };
 
   return (
-    <div className={classes.root}>
-      <Box className={classes.headerLine}>
-        <img className={classes.img} src={logo} alt="logo" />
-        <Box className={classes.searchField}>
-          <TextField
-            placeholder="キーワードから検索"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            className={classes.textField}
-          />
-          <i className={`fas fa-search ${classes.searchIcon}`} />
-        </Box>
-      </Box>
-      <Box className={classes.headerLine}>
-        <Box className={classes.conditionList}>
-          {conditionList.map((condition) => (
+    <Box className={classes.root}>
+      <Box display="flex" justifyContent="start">
+        <img
+          className={classes.logo}
+          src={logo}
+          alt="logo"
+          role="presentation"
+          onClick={movePage('/')}
+        />
+        <ul className={classes.navi}>
+          {headerSourceList.map((source) => (
             <Button
-              key={condition.id}
-              className={classes.conditionItem}
-              onClick={movePage(condition.url)}
+              className={classes.naviItem}
+              key={source.id}
+              onClick={movePage(source.url)}
             >
-              {condition.content}
+              {source.content}
             </Button>
           ))}
-        </Box>
-        <Box className={classes.naviList}>
-          {naviList.map((navi) => (
-            <Button key={navi.id} className={classes.menuButton}>
-              {navi.content}
-            </Button>
-          ))}
-        </Box>
+        </ul>
       </Box>
-    </div>
+      <Button className={classes.button}>無料体験レッスン</Button>
+    </Box>
   );
 };
 
-export default Header;
+export default TopPage;

@@ -1,98 +1,111 @@
-export type HeaderSourceList = {
+export type ListItemType = {
   id: number;
   content: string;
-  url: string;
+  url?: string;
+  name?: string;
 };
-export const headerSourceList: HeaderSourceList[] = [
-  { id: 1, content: 'コース案内', url: '/introduction' },
-  { id: 2, content: '店舗紹介', url: '/store' },
-  { id: 3, content: 'お問い合わせ', url: '/contact' },
+export const conditionList: ListItemType[] = [
+  { id: 1, content: '家紋で絞る', url: '/#crest', name: 'crest' },
+  { id: 2, content: '名前で絞る', url: '/#name', name: 'name' },
+  { id: 3, content: '出身地で絞る', url: '/#place', name: 'place' },
+];
+export const naviList: ListItemType[] = [
+  { id: 1, content: 'ログイン', url: '/login' },
+  { id: 2, content: '新規登録', url: '/insert' },
+];
+export const headerIdList = {
+  crest: 'crest',
+  name: 'name',
+  place: 'place',
+  login: 'login',
+  insert: 'insert',
+};
+
+export const kanaList: ListItemType[] = [
+  { id: 1, content: 'あ行' },
+  { id: 2, content: 'か行' },
+  { id: 3, content: 'さ行' },
+  { id: 4, content: 'た行' },
+  { id: 5, content: 'な行' },
+  { id: 6, content: 'は行' },
+  { id: 7, content: 'ま行' },
+  { id: 8, content: 'や行' },
+  { id: 9, content: 'ら行' },
+  { id: 10, content: 'わ行' },
+];
+export const shapeList: ListItemType[] = [
+  { id: 1, content: '自然紋' },
+  { id: 2, content: '植物紋' },
+  { id: 3, content: '動物紋' },
+  { id: 4, content: '建築紋' },
+  { id: 5, content: '器物紋' },
+  { id: 6, content: '幾何紋' },
+  { id: 7, content: '文字紋' },
 ];
 
-type CourseSourceTitleList = {
-  forStudent: string;
-  detail: string;
-  skills: string;
-  price: string;
-};
-export const courseSourceTitleList: CourseSourceTitleList = {
-  forStudent: '受講がおすすめの方',
-  detail: 'コース詳細',
-  skills: '身につくスキル',
-  price: '料金',
-};
-
-type CourseSourceDetailList = {
-  id: number;
-  title: string;
-  forStudent: string;
-  detail: string;
-  skills: string;
-  price: string;
-};
-export const courseSourceDetailList: CourseSourceDetailList[] = [
-  {
-    id: 1,
-    title: 'エンジニアコース',
-    forStudent: '今後エンジニア転職をお考えの方',
-    detail:
-      '実際のエンジニアのお仕事で必要なスキルを一から学んでいただき、即戦力で活躍できる人材を目指したコースです。/r/nPCに関する基礎知識を学んで頂いたのちに、Webアプリケーションを実際に作成しながらプログラミングスキルを身に着けて頂きます。',
-    skills:
-      '・IT基礎知識(ITパスポート相当)/r/n・プログラミングスキル(Java・HTML・CSS)',
-    price: '330,000円(税込)',
-  },
-  {
-    id: 2,
-    title: 'Webデザイナーコース',
-    forStudent:
-      '今後Webデザイナー転職をお考えの方・副業としてWebデザインをしていきたい方',
-    detail:
-      'Webページの仕組みやデザイン、コーディングを学び、自身でWebページを作成できるスキルを身に着けられるコースです。',
-    skills:
-      '・IT基礎知識(ITパスポート相当)/r/n・プログラミングスキル(HTML・CSS・JavaScript)',
-    price: '285,000円(税込)',
-  },
-  {
-    id: 3,
-    title: '一般教養コース',
-    forStudent: 'アプリやWebページの仕組みを理解したい方',
-    detail:
-      '普段何気なく使用しているアプリや、閲覧しているホームページがどのようにして作成され、皆さんのもとに届いているのかを学習できます。/r/nIT化が進む現代で必要な知識を身に着けたい方におすすめです。',
-    skills:
-      '・IT基礎知識(ITパスポート相当)/r/n・ホームページ、アプリの仕組みに関する知識',
-    price: '55,000円(税込)',
-  },
+export const regionList = [
+  { id: 1, contentn: '北海道', color: '#B6CE90' },
+  { id: 2, contentn: '東北', color: '#F8ED98' },
+  { id: 3, contentn: '関東', color: '#DBACA3' },
+  { id: 4, contentn: '北陸', color: '#9C6C84' },
+  { id: 5, contentn: '東海', color: '#B4CFE2' },
+  { id: 6, contentn: '近畿', color: '#E6A56B' },
+  { id: 7, contentn: '中国', color: '#DCDE9E' },
+  { id: 8, contentn: '四国', color: '#D6B2C4' },
+  { id: 9, contentn: '九州', color: '#8999C5' },
+  { id: 10, contentn: '沖縄', color: '#648F74' },
 ];
-
-type StoreList = {
+export type Prefecture = {
   id: number;
-  storeName: string;
-  adress: string;
-  tel: string;
+  content: string;
+  region: number;
 };
-export const storeList: StoreList[] = [
-  {
-    id: 1,
-    storeName: '新宿校',
-    adress: '東京都新宿区1-1-1',
-    tel: '030-1111-2222',
-  },
-  {
-    id: 2,
-    storeName: '渋谷校',
-    adress: '東京都渋谷区1-1-1',
-    tel: '030-3333-4444',
-  },
-  {
-    id: 3,
-    storeName: '大阪校',
-    adress: '大阪府大阪市北区2-2-2',
-    tel: '060-5555-6666',
-  },
-  {
-    id: 4,
-    storeName: '名古屋校',
-    adress: '愛知県名古屋市3-3-3',
-    tel: '080-7777-8888',
-  },
+export const prefectureList: Prefecture[] = [
+  { id: 1, content: '北海道', region: 1 },
+  { id: 2, content: '青森県', region: 2 },
+  { id: 3, content: '岩手県', region: 2 },
+  { id: 4, content: '宮城県', region: 2 },
+  { id: 5, content: '秋田県', region: 2 },
+  { id: 6, content: '山形県', region: 2 },
+  { id: 7, content: '福島県', region: 2 },
+  { id: 8, content: '茨城県', region: 3 },
+  { id: 9, content: '栃木県', region: 3 },
+  { id: 10, content: '群馬県', region: 3 },
+  { id: 11, content: '埼玉県', region: 3 },
+  { id: 12, content: '千葉県', region: 3 },
+  { id: 13, content: '東京都', region: 3 },
+  { id: 14, content: '神奈川県', region: 3 },
+  { id: 15, content: '新潟県', region: 4 },
+  { id: 16, content: '富山県', region: 4 },
+  { id: 17, content: '石川県', region: 4 },
+  { id: 18, content: '福井県', region: 4 },
+  { id: 19, content: '山梨県', region: 5 },
+  { id: 20, content: '長野県', region: 5 },
+  { id: 21, content: '岐阜県', region: 5 },
+  { id: 22, content: '静岡県', region: 5 },
+  { id: 23, content: '愛知県', region: 5 },
+  { id: 24, content: '三重県', region: 5 },
+  { id: 25, content: '滋賀県', region: 6 },
+  { id: 26, content: '京都府', region: 6 },
+  { id: 27, content: '大阪府', region: 6 },
+  { id: 28, content: '兵庫県', region: 6 },
+  { id: 29, content: '奈良県', region: 6 },
+  { id: 30, content: '和歌山県', region: 6 },
+  { id: 31, content: '鳥取県', region: 7 },
+  { id: 32, content: '島根県', region: 7 },
+  { id: 33, content: '岡山県', region: 7 },
+  { id: 34, content: '広島県', region: 7 },
+  { id: 35, content: '山口県', region: 7 },
+  { id: 36, content: '徳島県', region: 8 },
+  { id: 37, content: '香川県', region: 8 },
+  { id: 38, content: '愛媛県', region: 8 },
+  { id: 39, content: '高知県', region: 8 },
+  { id: 40, content: '福岡県', region: 9 },
+  { id: 41, content: '佐賀県', region: 9 },
+  { id: 42, content: '長崎県', region: 9 },
+  { id: 43, content: '熊本県', region: 9 },
+  { id: 44, content: '大分県', region: 9 },
+  { id: 45, content: '宮崎県', region: 9 },
+  { id: 46, content: '鹿児島県', region: 9 },
+  { id: 47, content: '沖縄県', region: 10 },
 ];

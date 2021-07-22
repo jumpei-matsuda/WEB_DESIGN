@@ -26,6 +26,7 @@ export const theme = {
     gray: '#989797',
     black: '#000',
     white: '#fff',
+    red: '#7D160D',
   },
   marginHeader: '5rem',
 };
