@@ -19,7 +19,7 @@ export const headerIdList = {
   place: 'place',
   login: 'login',
   insert: 'insert',
-};
+} as const;
 
 export const kanaList: ListItemType[] = [
   { id: 1, content: 'あ行' },
