@@ -11,14 +11,14 @@ export const conditionList: ListItemType[] = [
 ];
 export const naviList: ListItemType[] = [
   { id: 1, content: 'ログイン', url: '/login' },
-  { id: 2, content: '新規登録', url: '/insert' },
+  { id: 2, content: '新規登録', url: '/signup' },
 ];
 export const headerIdList = {
   crest: 'crest',
   name: 'name',
   place: 'place',
   login: 'login',
-  insert: 'insert',
+  signup: 'signup',
 } as const;
 
 export const kanaList: ListItemType[] = [
@@ -60,6 +60,27 @@ export type Prefecture = {
   content: string;
   region: number;
 };
+export type GridItem = {
+  id: number;
+  name?: string;
+  shape?: string;
+  img?: string;
+};
+export const damyCrestShapeList: GridItem[] = [
+  { id: 1, name: '名前', shape: '形状' },
+  { id: 2, name: '名前', shape: '形状' },
+  { id: 3, name: '名前', shape: '形状' },
+  { id: 4, name: '名前', shape: '形状' },
+  { id: 5, name: '名前', shape: '形状' },
+  { id: 6, name: '名前', shape: '形状' },
+  { id: 7, name: '名前', shape: '形状' },
+  { id: 8, name: '名前', shape: '形状' },
+  { id: 9, name: '名前', shape: '形状' },
+  { id: 10, name: '名前', shape: '形状' },
+  { id: 11, name: '名前', shape: '形状' },
+  { id: 12, name: '名前', shape: '形状' },
+];
+
 export const prefectureList: Prefecture[] = [
   { id: 1, content: '北海道', region: 1 },
   { id: 2, content: '青森県', region: 2 },

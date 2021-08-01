@@ -66,62 +66,76 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '1.125rem',
     fontFamily: 'Hiragino Kaku Gothic ProN',
   },
+  onlyDisp: {
+    width: '100%',
+    backgroundSize: 'cover',
+  },
 }));
 
 export type HeaderProps = {
   isResponsible: boolean;
+  header?: boolean;
 };
 
 const Header: React.FC<HeaderProps> = (props) => {
   const classes = useStyles();
   const history = useHistory();
-  const { isResponsible } = props;
+  const { isResponsible, header } = props;
 
   const [keyword, setKeyword] = useState<string>('');
 
-  const movePage =
-    (url = '/') =>
-    () => {
-      history.push(url);
-    };
+  const movePage = (url = '/') => {
+    console.log(url);
+    history.push(url);
+  };
 
   console.log(isResponsible);
 
   return (
-    <div className={classes.root}>
-      <Box className={classes.headerLine}>
-        <img className={classes.img} src={logo} alt="logo" />
-        <Box className={classes.searchField}>
-          <TextField
-            placeholder="キーワードから検索"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            className={classes.textField}
-          />
-          <i className={`fas fa-search ${classes.searchIcon}`} />
-        </Box>
-      </Box>
-      <Box className={classes.headerLine}>
-        <Box className={classes.conditionList}>
-          {conditionList.map((condition) => (
-            <Button
-              key={condition.id}
-              className={classes.conditionItem}
-              onClick={movePage(condition.url)}
-            >
-              {condition.content}
-            </Button>
-          ))}
-        </Box>
-        <Box className={classes.naviList}>
-          {naviList.map((navi) => (
-            <Button key={navi.id} className={classes.menuButton}>
-              {navi.content}
-            </Button>
-          ))}
-        </Box>
-      </Box>
-    </div>
+    <>
+      {header ? (
+        <div className={classes.root}>
+          <Box className={classes.headerLine}>
+            <img className={classes.img} src={logo} alt="logo" />
+            <Box className={classes.searchField}>
+              <TextField
+                placeholder="キーワードから検索"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                className={classes.textField}
+              />
+              <i className={`fas fa-search ${classes.searchIcon}`} />
+            </Box>
+          </Box>
+          <Box className={classes.headerLine}>
+            <Box className={classes.conditionList}>
+              {conditionList.map((condition) => (
+                <Button
+                  key={condition.id}
+                  className={classes.conditionItem}
+                  onClick={() => movePage(condition.url)}
+                >
+                  {condition.content}
+                </Button>
+              ))}
+            </Box>
+            <Box className={classes.naviList}>
+              {naviList.map((navi) => (
+                <Button
+                  key={navi.id}
+                  className={classes.menuButton}
+                  onClick={() => movePage(navi.url)}
+                >
+                  {navi.content}
+                </Button>
+              ))}
+            </Box>
+          </Box>
+        </div>
+      ) : (
+        <img className={classes.onlyDisp} src={logo} alt="logo" />
+      )}
+    </>
   );
 };
 

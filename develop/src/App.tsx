@@ -6,7 +6,7 @@ import { theme } from 'constants/themeConst';
 
 import { TopPage } from 'components/pages/TopPage/index';
 import { LoginPage } from 'components/pages/LoginPage/index';
-import { MemberInfoEditPage } from 'components/pages/MemberInfoEditPage/index';
+import { SignUpPage } from 'components/pages/SignUpPage/index';
 
 const App: React.FC = () => {
   const { hash, pathname } = useLocation();
@@ -31,8 +31,8 @@ const App: React.FC = () => {
         <Route path="/login">
           <LoginPage isResponsible={isResponsible} />
         </Route>
-        <Route path="/memberInfoEdit">
-          <MemberInfoEditPage isResponsible={isResponsible} />
+        <Route path="/signup">
+          <SignUpPage isResponsible={isResponsible} />
         </Route>
       </Switch>
     </ThemeProvider>

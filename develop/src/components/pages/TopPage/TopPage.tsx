@@ -1,11 +1,18 @@
 import React from 'react';
-import { makeStyles, Box, Grid, Button } from '@material-ui/core';
+import { makeStyles, Box } from '@material-ui/core';
 import { Theme } from 'constants/themeConst';
-import { headerIdList, kanaList, shapeList } from 'constants/pageSourceConst';
+import {
+  headerIdList,
+  kanaList,
+  shapeList,
+  damyCrestShapeList,
+} from 'constants/pageSourceConst';
 import topImage from 'images/top.jpg';
 
 import PageTempale from 'components/templates/PageTempale';
 import Prefecture from './Prefecture';
+import SelectLabelList from './SelectLabelList';
+import GridList from './GridList';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -33,26 +40,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: '1.5',
     marginBottom: '1rem',
   },
-  searchShape: {
-    maxWidth: '800px',
-    width: 'auto',
-    background: theme.color.white,
-  },
-  gridItem: {
-    padding: '.5rem',
-  },
-  damy: {
-    background: theme.color.rightGray,
-    height: '10rem',
-    width: '10rem',
-    marginRight: '2rem',
-  },
-  crestName: {
-    background: theme.color.red,
-    color: theme.color.white,
-    padding: '.5rem',
-    fontSize: '1.25rem',
-  },
   conditionArea: {
     marginBottom: '2rem',
     '&:after': {
@@ -62,18 +49,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       margin: '1rem 0',
       background: theme.color.rightGray,
     },
-  },
-  conditionList: {
-    display: 'flex',
-    justifyContent: 'start',
-    alignItems: 'center',
-  },
-  conditionTitle: {
-    fontSize: '1.3rem',
-    fontWeight: 'bold',
-  },
-  ConditionLabel: {
-    fontSize: '1.3rem',
   },
   backGroundWhite: {
     background: theme.color.white,
@@ -88,12 +63,8 @@ const TopPage: React.FC<TopPageProps> = (props) => {
   const classes = useStyles();
   const { isResponsible } = props;
 
-  const damyItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
-  console.log(isResponsible);
-
   return (
-    <PageTempale isResponsible={isResponsible}>
+    <PageTempale isResponsible={isResponsible} header>
       <Box className={classes.root}>
         <img className={classes.img} src={topImage} alt="top" />
         <Box marginBottom="5rem">
@@ -113,34 +84,10 @@ const TopPage: React.FC<TopPageProps> = (props) => {
           className={classes.backGroundWhite}
         >
           <Box className={classes.conditionArea}>
-            <Box className={classes.conditionList}>
-              <span className={classes.conditionTitle}>【50音から選ぶ】：</span>
-              {kanaList.map((kana) => (
-                <Button className={classes.ConditionLabel} key={kana.id}>
-                  {kana.content}
-                </Button>
-              ))}
-            </Box>
-            <Box className={classes.conditionList}>
-              <span className={classes.conditionTitle}>【形状から選ぶ】：</span>
-              {shapeList.map((shape) => (
-                <Button className={classes.ConditionLabel} key={shape.id}>
-                  {shape.content}
-                </Button>
-              ))}
-            </Box>
+            <SelectLabelList title="【50音から選ぶ】" list={kanaList} />
+            <SelectLabelList title="【形状から選ぶ】" list={shapeList} />
           </Box>
-          <Grid container>
-            {damyItems.map((item) => (
-              <Grid className={classes.gridItem} xs={4} key={item} item>
-                <p className={classes.crestName}>形状</p>
-                <Box display="flex" justifyContent="start" alignItems="center">
-                  <div className={classes.damy} />
-                  <span>名前</span>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+          <GridList list={damyCrestShapeList} />
         </Box>
         <Prefecture />
       </Box>

@@ -14,17 +14,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export type PageTempaleProps = {
   isResponsible: boolean;
+  header?: boolean;
 };
 
 const PageTempale: React.FC<PageTempaleProps> = (props) => {
   const classes = useStyles();
-  const { isResponsible, children } = props;
+  const { isResponsible, header, children } = props;
 
   console.log(isResponsible);
 
   return (
     <div className={classes.root}>
-      <Header isResponsible={isResponsible} />
+      <Header isResponsible={isResponsible} header={header} />
       {children}
       <Footer isResponsible={isResponsible} />
     </div>

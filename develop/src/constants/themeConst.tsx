@@ -27,6 +27,7 @@ export const theme = {
     black: '#000',
     white: '#fff',
     red: '#7D160D',
+    rightRed: 'rgba(203,12,12,.73)',
   },
   marginHeader: '5rem',
 };
