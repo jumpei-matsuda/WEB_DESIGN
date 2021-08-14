@@ -5,21 +5,22 @@ import { Theme } from 'constants/themeConst';
 import { Header } from 'components/organisms/Header/index';
 import { Footer } from 'components/organisms/Footer/index';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = (background: keyof Theme["color"]) => makeStyles((theme: Theme) => ({
   root: {
     width: '100%',
-    background: theme.color.rightGray,
+    background: theme.color[background],
   },
 }));
 
 export type PageTempaleProps = {
   isResponsible: boolean;
   header?: boolean;
+  background?: keyof Theme["color"];
 };
 
 const PageTempale: React.FC<PageTempaleProps> = (props) => {
-  const classes = useStyles();
-  const { isResponsible, header, children } = props;
+  const { isResponsible, header, background, children } = props;
+  const classes = useStyles(background ?? 'rightGray')();
 
   console.log(isResponsible);
 

@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { makeStyles, Button } from '@material-ui/core';
-import { InputForm, defaultValues } from 'constants/commonConstant';
+import { InputForm, defaultValues, InputItemList } from 'constants/commonConstant';
 import { Theme } from 'constants/themeConst';
 
 import InputText from 'components/atoms/InputText';
@@ -11,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     padding: '2rem 1rem',
     width: '75%',
+    textAlign: 'center',
   },
   text: {
     border: 'solid',
@@ -28,37 +28,34 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Form: React.FC = () => {
-  const classes = useStyles();
+type FormProps = {
+  inputItemList: InputItemList[],
+  onSubmit: (data: InputForm) => void;
+  button: string;
+}
 
+const Form: React.FC<FormProps> = (props) => {
+  const { onSubmit, inputItemList, button } = props;
+
+  const classes = useStyles();
   const { handleSubmit, control } = useForm<InputForm>({ defaultValues });
-  const onSubmit: SubmitHandler<InputForm> = (data) => {
-    console.log(data);
-  };
 
   return (
     <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
-      <InputText name="name" title="ニックネーム" control={control} required />
-      <InputText
-        name="mail"
-        title="メールアドレス"
-        control={control}
-        required
-      />
-      <InputText
-        name="password"
-        title="パスワード"
-        control={control}
-        required
-      />
-      <InputText
-        name="passwordConf"
-        title="パスワード(確認)"
-        control={control}
-        required
-      />
+      {inputItemList.map((item) => (
+        (item.type === 'text' || item.type === 'password' || item.type === 'mail' || item.type === 'date') && (
+          <InputText
+            key={item.id}
+            name={item.name}
+            title={item.title ?? ''}
+            type={item.type}
+            control={control}
+            required={item.required}
+          />
+        )
+      ))}
       <Button className={classes.submit} type="submit">
-        会員登録
+        {button}
       </Button>
     </form>
   );

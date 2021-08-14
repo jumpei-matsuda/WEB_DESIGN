@@ -30,6 +30,6 @@ export const theme = {
     rightRed: 'rgba(203,12,12,.73)',
   },
   marginHeader: '5rem',
-};
+} as const;
 
 export type Theme = typeof theme;

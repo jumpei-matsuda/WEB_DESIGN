@@ -8,6 +8,7 @@ import {
   damyCrestShapeList,
 } from 'constants/pageSourceConst';
 import topImage from 'images/top.jpg';
+import { useAuth } from 'contexts/auth';
 
 import PageTempale from 'components/templates/PageTempale';
 import Prefecture from './Prefecture';
@@ -61,7 +62,10 @@ export type TopPageProps = {
 
 const TopPage: React.FC<TopPageProps> = (props) => {
   const classes = useStyles();
+  const auth = useAuth();
   const { isResponsible } = props;
+
+  console.log(auth.user);
 
   return (
     <PageTempale isResponsible={isResponsible} header>
