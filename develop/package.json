@@ -2,7 +2,7 @@
   "name": "demo-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jumpei-matsuda.github.io/programing-school/",
+  "homepage": "https://webdesign-b9385.web.app/",
   "dependencies": {
     "@material-ui/core": "^4.12.2",
     "@material-ui/styles": "^4.11.4",
@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "react-scripts build & firebase deploy",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

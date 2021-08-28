@@ -20,6 +20,7 @@ export const theme = {
     navy: '#061b94',
     yellow: '#c8b432',
     rightGray: '#f3f3f3',
+    gray: '#d7d7d7',
   },
   marginHeader: '5rem',
 };

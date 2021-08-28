@@ -7,6 +7,15 @@ export type InputForm = {
   content: string;
 };
 
+export const inputType = {
+  text: 'text',
+  mail: 'mail',
+  textarea: 'textarea',
+  select: 'select',
+  password: 'password',
+  date: 'date',
+} as const;
+
 export const defaultValues = {
   name: '',
   kana: '',

@@ -2,6 +2,9 @@ import { makeStyles, Box, Button } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { headerSourceList } from 'constants/pageSourceConst';
 import logo from 'images/logo.svg';
+import { theme } from 'constants/themeConst';
+
+import NaviButton from 'components/atoms/NaviButton';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -27,19 +30,19 @@ const useStyles = makeStyles(() => ({
   navi: {
     display: 'flex',
     flexDirection: 'row',
+    height: 'fit-content',
   },
   logo: {
     width: '15rem',
     height: 'fit-content',
+    padding: '5px',
+    transition: '.5s',
     '&:hover': {
       cursor: 'pointer',
+      background: theme.color.gray,
+      color: 'white',
+      borderRadius: '4px',
     },
-  },
-  naviItem: {
-    margin: '0 2rem',
-    color: '#061b94',
-    fontWeight: 900,
-    fontFamily: 'Sawarabi Mincho, sans-serif',
   },
   button: {
     backgroundColor: '#061b94',
@@ -47,6 +50,7 @@ const useStyles = makeStyles(() => ({
     border: 'solid #061b94',
     borderRadius: '30px',
     padding: '.5rem',
+    fontFamily: 'serif',
     '&:hover': {
       color: '#061b94',
       background: '#f3f3f3',
@@ -64,7 +68,7 @@ const Header: React.VFC = () => {
 
   return (
     <Box className={classes.root}>
-      <Box display="flex" justifyContent="start">
+      <Box display="flex" justifyContent="start" alignItems="center">
         <img
           className={classes.logo}
           src={logo}
@@ -74,13 +78,13 @@ const Header: React.VFC = () => {
         />
         <ul className={classes.navi}>
           {headerSourceList.map((source) => (
-            <Button
-              className={classes.naviItem}
+            <NaviButton
               key={source.id}
+              content={source.content}
+              type='button'
+              color='navy'
               onClick={movePage(source.url)}
-            >
-              {source.content}
-            </Button>
+          />
           ))}
         </ul>
       </Box>

@@ -1,8 +1,11 @@
-import { makeStyles, Box, Button } from '@material-ui/core';
+import { makeStyles, Box } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { headerSourceList } from 'constants/pageSourceConst';
+import { Theme } from 'constants/themeConst';
 
-const useStyles = makeStyles(() => ({
+import NaviButton from 'components/atoms/NaviButton';
+
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100v%',
     height: '10rem',
@@ -23,6 +26,10 @@ const useStyles = makeStyles(() => ({
     color: 'white',
     fontWeight: 900,
     fontFamily: 'Sawarabi Mincho, sans-serif',
+    '&:hover': {
+      background: 'white',
+      color: theme.color.navy,
+    }
   },
 }));
 
@@ -38,13 +45,13 @@ const Footer: React.VFC = () => {
     <Box className={classes.root}>
       <ul className={classes.navi}>
         {headerSourceList.map((souce) => (
-          <Button
-            className={classes.naviItem}
+          <NaviButton
             key={souce.id}
+            content={souce.content}
+            type='button'
+            color='white'
             onClick={movePage(souce.url)}
-          >
-            {souce.content}
-          </Button>
+          />
         ))}
       </ul>
       <small>&copy; As Engineer All right reserve</small>
