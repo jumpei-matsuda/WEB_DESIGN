@@ -27,6 +27,7 @@
         "editor.formatOnSave": true
     },
     "[typescriptreact]": {
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
 }
