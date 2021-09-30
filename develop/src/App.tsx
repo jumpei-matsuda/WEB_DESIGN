@@ -1,7 +1,7 @@
-import Register from "components/Register";
+import { Apps } from "components/Register";
 import 'css/style.css';
 
 const App: React.FC = () => (
-  <Register />
+  <Apps />
 );
 export default App;
